@@ -32,6 +32,7 @@ NGCI.config(['$routeProvider', function ($routeProvider) {
 
 NGCI.run(['$rootScope','$window','facebookservice', function ($rootScope,$window,facebookservice) {
 	$rootScope.pageTitle = 'Home';
+	$rootScope.user = null;
 
 	$window.fbAsyncInit = function() {
 		FB.init({ 

@@ -1,10 +1,9 @@
-NGCI.factory('facebookservice', ['$q','$window', function($q,$window) {
-	console.log($window);
+NGCI.factory('facebookservice', ['$q','$window','$rootScope', function($q,$window,$rootScope) {
 	return {
 		getMyLastName: function() {
 			var deferred = $q.defer();
 			window.FB.api('/me', {
-				fields: 'last_name'
+				fields: 'id,name,first_name,last_name,age_range,link,gender,locale,picture,timezone,updated_time,verified'
 			}, function(response) {
 				if (!response || response.error) {
 					deferred.reject('Error occured');
