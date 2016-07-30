@@ -41,7 +41,7 @@ NGCI.run(['$rootScope','$window','facebookservice', function ($rootScope,$window
 			xfbml: true,
 			version: 'v2.4'
 		});
+		facebookservice.watchLoginChange();
 	};
 
-	facebookservice.watchLoginChange();
 }]);

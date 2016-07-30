@@ -1,8 +1,9 @@
 NGCI.factory('facebookservice', ['$q','$window', function($q,$window) {
+	console.log($window);
 	return {
 		getMyLastName: function() {
 			var deferred = $q.defer();
-			FB.api('/me', {
+			window.FB.api('/me', {
 				fields: 'last_name'
 			}, function(response) {
 				if (!response || response.error) {
@@ -17,7 +18,7 @@ NGCI.factory('facebookservice', ['$q','$window', function($q,$window) {
 
 			var _self = this;
 
-			FB.Event.subscribe('auth.authResponseChange', function(res) {
+			window.FB.Event.subscribe('auth.authResponseChange', function(res) {
 
 				if (res.status === 'connected') {
 
@@ -46,7 +47,7 @@ NGCI.factory('facebookservice', ['$q','$window', function($q,$window) {
 
 			var _self = this;
 
-			FB.api('/me', function(res) {
+			window.FB.api('/me', function(res) {
 				$rootScope.$apply(function() {
 					$rootScope.user = _self.user = res;
 				});
@@ -57,7 +58,7 @@ NGCI.factory('facebookservice', ['$q','$window', function($q,$window) {
 
 			var _self = this;
 
-			FB.logout(function(response) {
+			window.FB.logout(function(response) {
 				$rootScope.$apply(function() {
 					$rootScope.user = _self.user = {};
 				});
