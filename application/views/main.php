@@ -90,6 +90,7 @@
     <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.js"></script>
     <!-- 3rd party js end -->
 
 
@@ -103,14 +104,16 @@
 
 
     <!-- services start -->
+    <script type="text/javascript" src="assets/js/services/httpinterceptor.js"></script>
+    <script type="text/javascript" src="assets/js/services/loginservice.js"></script>
     <script type="text/javascript" src="assets/js/services/facebookservice.js"></script>
     <!-- services end -->
 
     <!-- controllers start -->
-    <script type="text/javascript" src="assets/js/controllers/homeCtrl.js"></script>
-    <script type="text/javascript" src="assets/js/controllers/aboutCtrl.js"></script>
-    <script type="text/javascript" src="assets/js/controllers/signupCtrl.js"></script>
-    <script type="text/javascript" src="assets/js/controllers/loginCtrl.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/homectrl.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/aboutctrl.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/signupctrl.js"></script>
+    <script type="text/javascript" src="assets/js/controllers/loginctrl.js"></script>
     <!-- controllers end -->
 
 

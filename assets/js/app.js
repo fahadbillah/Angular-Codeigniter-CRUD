@@ -3,9 +3,11 @@
 *
 * Description
 */
-var NGCI = angular.module('NGCI', ['ngRoute']);
+var NGCI = angular.module('NGCI', ['ngRoute','ngCookies']);
 
-NGCI.config(['$routeProvider', function ($routeProvider) {
+NGCI.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProvider) {
+	$httpProvider.interceptors.push('httpInterceptor');
+
 	$routeProvider
 	.when('/home', {
 		templateUrl: 'views/home',
@@ -30,19 +32,18 @@ NGCI.config(['$routeProvider', function ($routeProvider) {
 	.otherwise({ redirectTo: '/home' })
 }]);
 
-NGCI.run(['$rootScope','$window','facebookservice', function ($rootScope,$window,facebookservice) {
+NGCI.run(['$rootScope','$window','facebookService', function ($rootScope,$window,facebookService) {
 	$rootScope.pageTitle = 'Home';
 	$rootScope.user = null;
 
 	$window.fbAsyncInit = function() {
 		FB.init({ 
 			appId: '487972194744249',
-			status: true, 
-			cookie: true, 
-			xfbml: true,
-			version: 'v2.4'
+			cookie: true, // This is important, it's not enabled by default
+			version: 'v2.7'
 		});
-		facebookservice.watchLoginChange();
+		// facebookService.watchLoginChange();
+		facebookService.login();
 	};
 
 }]);
