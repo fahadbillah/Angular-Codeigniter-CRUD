@@ -83,3 +83,19 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+
+/**
+ *
+ * custom constants
+ *
+ */
+defined('GOOGLE_CLIENT_ID')        OR define('GOOGLE_CLIENT_ID', '222832390197-v37qjl1guatc5ge8kracepmsi3eff6nm.apps.googleusercontent.com'); // no errors
+defined('GOOGLE_CLIENT_SECRET')        OR define('GOOGLE_CLIENT_SECRET', 'XxCIM4u_2kX30xjAqW9cKg2R'); // no errors
+defined('GOOGLE_APPLICATION_NAME')        OR define('GOOGLE_APPLICATION_NAME', 'NGCI'); // no errors
+
+
+// const GOOGLE_CLIENT_ID = '222832390197-v37qjl1guatc5ge8kracepmsi3eff6nm.apps.googleusercontent.com';
+
+// const GOOGLE_CLIENT_SECRET = 'XxCIM4u_2kX30xjAqW9cKg2R';
+// const GOOGLE_APPLICATION_NAME = "NGCI";

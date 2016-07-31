@@ -9,4 +9,5 @@ NGCI.controller('SignupCtrl', ['$rootScope','$scope','facebookService', '$locati
 			$location.path('/home');
 		} else {}
 	});
+	$scope.socialLoginButton = 'views/social_login_buttons?'+parseInt(Math.random()*100);
 }]);

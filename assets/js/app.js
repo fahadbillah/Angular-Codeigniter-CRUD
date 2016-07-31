@@ -52,24 +52,4 @@ NGCI.run(['$rootScope','$window','facebookService', function ($rootScope,$window
 		facebookService.watchLoginChange();
 	};
 
-	// $rootScope.$on('$viewContentLoaded', function() {
-	// 	(function(d,s,id) {
-	// 		FB = null;
-
-	// 		var js,
-	// 		ref = d.getElementsByTagName('script')[0];
-
-	// 		if (d.getElementById(id)) {
-	// 			// d.getElementById(id).remove();
-	// 			return;
-	// 		}
-
-	// 		js = d.createElement(s);
-	// 		js.id = id;
-	// 		js.async = false;
-	// 		js.src = "//connect.facebook.net/en_US/sdk.js";
-
-	// 		ref.parentNode.insertBefore(js, ref);
-	// 	}(document, 'script', 'facebook-jssdk'));
-	// });
 }]);

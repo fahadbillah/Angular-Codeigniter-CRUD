@@ -46,6 +46,11 @@ class Views extends CI_Controller {
 		$this->load->view('ng-views/logout');
 	}
 
+	public function social_login_buttons()
+	{
+		$this->load->view('ng-views/social_login_buttons');
+	}
+
 }
 
 /* End of file Views.php */

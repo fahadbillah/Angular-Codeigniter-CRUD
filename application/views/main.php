@@ -3,6 +3,9 @@
 <head>
 	<title>{{pageTitle}} | NG-CI</title>
 
+	<meta name="google-signin-client_id" content="222832390197-v37qjl1guatc5ge8kracepmsi3eff6nm.apps.googleusercontent.com">
+
+
 	<!-- 3rd party css start -->
 
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
@@ -14,6 +17,8 @@
 	<!-- own css start -->
 	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 	<!-- own css start -->
+
+
 </head>
 <body>
 	<div id="fb-root"></div>
@@ -65,7 +70,7 @@
 		</div>
 	</div>
 	<!-- facebook sdk start -->
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		(function(d){
 			FB = null;
 
@@ -85,8 +90,11 @@
 			ref.parentNode.insertBefore(js, ref);
 
 		}(document));
-	</script>
+	</script> -->
 	<!-- facebook sdk end -->
+
+	<!-- google sdk start -->
+	<!-- google sdk end -->
 
 
 	<!-- 3rd party js start -->
@@ -111,6 +119,7 @@
 	<script type="text/javascript" src="assets/js/services/httpinterceptor.js"></script>
 	<script type="text/javascript" src="assets/js/services/loginservice.js"></script>
 	<script type="text/javascript" src="assets/js/services/facebookservice.js"></script>
+	<script type="text/javascript" src="assets/js/services/googleservice.js"></script>
 	<!-- services end -->
 
 	<!-- controllers start -->

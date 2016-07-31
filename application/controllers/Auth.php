@@ -26,9 +26,9 @@ class Auth extends CI_Controller {
 	{
 		$login_data = $this->input->post();
 		if ($login_data['login_type'] === 'facebook') {
-			$user_data = $this->social_login($login_data);
-		} else if ($login_data['login_type'] === 'facebook') {
-			$this->social_login($login_data);
+			$user_data = $this->facebook_login($login_data);
+		} else if ($login_data['login_type'] === 'google') {
+			$this->google_login($login_data);
 		}else{
 
 		}
@@ -40,7 +40,90 @@ class Auth extends CI_Controller {
 		# code...
 	}
 
-	private function social_login($login_data)
+	private function google_login($login_data)
+	{
+		// _json($login_data);
+
+
+
+
+		$client = new Google_Client();
+		$client->setApplicationName(GOOGLE_APPLICATION_NAME);
+		$client->setClientId(GOOGLE_CLIENT_ID);
+		$client->setClientSecret(GOOGLE_CLIENT_SECRET);
+		$client->setRedirectUri('postmessage');
+		$plus = new Google_Service_Plus($client);
+		$app = new Silex\Application();
+		$app['debug'] = true;
+		$app->register(new Silex\Provider\TwigServiceProvider(), array(
+			'twig.path' => __DIR__,
+			));
+		$app->register(new Silex\Provider\SessionServiceProvider());
+		// Initialize a session for the current user, and render index.html.
+		$app->get('/', function () use ($app) {
+			// _dump($app);
+			$state = md5(rand());
+			$sess = array(
+				'state' => $state
+				);
+			
+			$this->session->set_userdata( $sess );
+			// $app['session']->set('state', $state);
+			// return $app['twig']->render('index.html', array(
+			// 	'CLIENT_ID' => CLIENT_ID,
+			// 	'STATE' => $state,
+			// 	'APPLICATION_NAME' => APPLICATION_NAME
+			// 	));
+		});
+
+
+
+			// Upgrade given auth code to token, and store it in the session.
+			// POST body of request should be the authorization code.
+			// Example URI: /connect?state=...&gplus_id=...
+		$app->post('/connect', function (Request $request) use ($app, $client) {
+			$token = $this->session->userdata('token');
+			// $token = $app['session']->get('token');
+			if (empty($token)) {
+		        // Ensure that this is no request forgery going on, and that the user
+		        // sending us this connect request is the user that was supposed to.
+				_dump($request->get('state'));
+				_dump($app['session']->get('state'));
+				if ($request->get('state') != ($app['session']->get('state'))) {
+					_json(array(
+						'success' => false,
+						'message' => 'Invalid state parameter',
+						));
+					// return new Response('Invalid state parameter', 401);
+				}
+			        // Normally the state would be a one-time use token, however in our
+			        // simple case, we want a user to be able to connect and disconnect
+			        // without reloading the page.  Thus, for demonstration, we don't
+			        // implement this best practice.
+			        //$app['session']->set('state', '');
+				$code = $request->getContent();
+			        // Exchange the OAuth 2.0 authorization code for user credentials.
+				$client->authenticate($code);
+				$token = json_decode($client->getAccessToken());
+			        // You can read the Google user ID in the ID token.
+			        // "sub" represents the ID token subscriber which in our case
+			        // is the user ID. This sample does not use the user ID.
+				$attributes = $client->verifyIdToken($token->id_token, CLIENT_ID)
+				->getAttributes();
+				$gplus_id = $attributes["payload"]["sub"];
+			        // Store the token in the session for later use.
+				$app['session']->set('token', json_encode($token));
+				$response = 'Successfully connected with token: ' . print_r($token, true);
+			} else {
+				$response = 'Already connected';
+			}
+			return new Response($response, 200);
+		});
+
+
+	}
+
+	private function facebook_login($login_data)
 	{
 		$fbApp = new Facebook\FacebookApp('487972194744249', '8d4e044b58d09a6ffc81b2c881ba364f');
 
@@ -109,7 +192,7 @@ class Auth extends CI_Controller {
 			$create_user_data['user_type'] = 'user';
 			$this->user_model->create_user($create_user_data);
 		}
-		
+
 		$sess['fb_access_token'] = (string) $accessToken;
 		$this->session->set_userdata( $sess );
 		unset($sess['fb_access_token']);

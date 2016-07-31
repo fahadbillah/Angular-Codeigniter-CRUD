@@ -9,9 +9,9 @@ NGCI.factory('loginService', ['$http','$q','$rootScope', function($http,$q,$root
 				data: data
 			})
 			.success(function(data) {
-				console.log(data);
+				console.log('return data from login method: ', data);
 				// $rootScope.user = $rootScope.user || data;
-
+				return false;
 				$rootScope.user = data;
 			})
 			.error(function(data) {
