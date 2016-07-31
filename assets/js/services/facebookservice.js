@@ -2,7 +2,7 @@ NGCI.factory('facebookService', ['$q','$window','$rootScope','$http','loginServi
 	return {
 		getMyLastName: function() {
 			var deferred = $q.defer();
-			window.FB.api('/me', function(response) {
+			FB.api('/me', function(response) {
 				if (!response || response.error) {
 					deferred.reject('Error occured');
 				} else {
@@ -15,15 +15,15 @@ NGCI.factory('facebookService', ['$q','$window','$rootScope','$http','loginServi
 
 			var _self = this;
 
-			window.FB.Event.subscribe('auth.authResponseChange', function(res) {
-
+			FB.Event.subscribe('auth.authResponseChange', function(res) {
+				console.log('auto check status: ',res);
 				if (res.status === 'connected') {
 
 			      	/*
 			       	The user is already logged,
 			       	is possible retrieve his personal info
 			       	*/
-			       	_self.login();
+			       	_self.getUserData(res.authResponse);
 
 					/*
 					This is also the point where you should create a
@@ -37,85 +37,69 @@ NGCI.factory('facebookService', ['$q','$window','$rootScope','$http','loginServi
 					The user is not logged to the app, or into Facebook:
 					destroy the session on the server.
 					*/
-					_self.login();
+					// _self.login();
 				}
 			});
 		},
 		login: function() {
+			var _self = this;
 
 			FB.login(function(response) {
 				if (response.authResponse) {
-					// alert('You are logged in &amp; cookie set!');
-       				// Now you can redirect the user or do an AJAX request to
-    				// a PHP script that grabs the signed request from the cookie.
-    				console.log(response);
-    				// return false;
-
-    				response.authResponse.login_type = 'facebook';
-    				$cookies.put('fbsr_487972194744249', response.authResponse.signedRequest);
-
-    				loginService.login(response.authResponse)
-    				.then(function(data) {
-    					console.log(data);
-    					// $rootScope.$apply(function() {
-    					// 	$rootScope.user = _self.user = res;
-    					// });
-    				}, function(data) {
-    					console.log(data);
-    				});
-    			} else {
-    				console.log('User cancelled login or did not fully authorize.');
-    			}
-    		});
-			return false;
-
-			var _self = this;
-
-			window.FB.api('/me', function(res) {
-				res.login_type = 'facebook';
-
-				loginService.login(res)
-				.then(function(data) {
-					console.log(data);
-					$rootScope.$apply(function() {
-						$rootScope.user = _self.user = res;
-					});
-				}, function(data) {
-					console.log(data);
-				});
+					response.authResponse.login_type = 'facebook';
+					_self.setCookies($rootScope.appId,response.authResponse.signedRequest);
+					loginService.login(response.authResponse)
+				} else {
+					console.log('User cancelled login or did not fully authorize.');
+				}
 			});
 		},
-		getUserData: function() {
+		setCookies: function(appId, signedRequest) {
+			$cookies.put('fbsr_'+appId, signedRequest);
+		},
+		deleteCookies: function(appId) {
+			$cookies.remove('fbsr_'+appId);
+		},
+		getUserData: function(authResponse) {
 			var _self = this;
 
-			window.FB.api('/me', {
-				fields: 'id,name,first_name,last_name,age_range,link,gender,locale,picture,timezone,updated_time,verified,birthday'
+			FB.api('/me', {
+				fields: 'id,name,gender,locale,picture,timezone,updated_time,verified'
 			}, function(res) {
-				res.login_type = 'facebook';
-				// $http({
-				// 	url: 'auth/login',
-				// 	method: 'post',
-				// 	data: res
-				// })
-				// .success(function(data) {
-				// 	console.log(data);
-				// })
-				// .error(function(data) {
-				// 	console.log(data);
-				// });
-				$rootScope.$apply(function() {
-					$rootScope.user = _self.user = res;
-				});
+				var userData = {
+					'social_id' : res.id,
+					'login_type' : 'facebook',
+					'gender' : res.gender,
+					'name' : res.name,
+					'language' : res.locale,
+					'profile_picture' : res.picture.data.url,
+					'timezone' : res.timezone,
+				};
+				_self.setCookies($rootScope.appId,authResponse.signedRequest);
+
+				authResponse.login_type = 'facebook';
+				loginService.login(authResponse);
+				
 			});
 		},
 		logout: function() {
 
 			var _self = this;
 
-			window.FB.logout(function(response) {
-				$rootScope.$apply(function() {
-					$rootScope.user = _self.user = {};
+			FB.logout(function(response) {
+				// console.log(response);
+				// return false;
+				// var deferred = $q.defer();
+				loginService.logout()
+				.then(function(data) {
+					$rootScope.user = _self.user = null;
+					_self.deleteCookies($rootScope.appId);
+					// deferred.resolve(data);
+
+				}, function(data) {
+					// deferred.reject('Error occured');
 				});
+				// return deferred.promise;
 			});
 
 		}

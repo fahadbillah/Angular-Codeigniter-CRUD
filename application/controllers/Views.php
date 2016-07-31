@@ -40,6 +40,11 @@ class Views extends CI_Controller {
 	{
 		$this->load->view('ng-views/login');
 	}
+	
+	public function logout()
+	{
+		$this->load->view('ng-views/logout');
+	}
 
 }
 

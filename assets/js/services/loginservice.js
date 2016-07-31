@@ -1,6 +1,26 @@
-NGCI.factory('loginService', ['$http','$q', function($http,$q){
+NGCI.factory('loginService', ['$http','$q','$rootScope', function($http,$q,$rootScope){
 	return {
 		login: function(data) {
+			// var deferred = $q.defer();
+
+			$http({
+				method: 'post',
+				url: 'auth/login',
+				data: data
+			})
+			.success(function(data) {
+				console.log(data);
+				// $rootScope.user = $rootScope.user || data;
+
+				$rootScope.user = data;
+			})
+			.error(function(data) {
+				// deferred.reject('Error occured');
+			});
+
+			// return deferred.promise;
+		},
+		loginCheck: function(data) {
 			var deferred = $q.defer();
 
 			$http({
@@ -17,13 +37,12 @@ NGCI.factory('loginService', ['$http','$q', function($http,$q){
 
 			return deferred.promise;
 		},
-		loginCheck: function(data) {
+		logout: function() {
 			var deferred = $q.defer();
 
 			$http({
-				method: 'post',
-				url: 'auth/login',
-				data: data
+				method: 'get',
+				url: 'auth/logout'
 			})
 			.success(function(data) {
 				deferred.resolve(data);

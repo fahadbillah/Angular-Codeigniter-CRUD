@@ -20,7 +20,7 @@
 	<div class="header">
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">NGCI</a>
+				<a class="navbar-brand" href="#/home">NGCI</a>
 				<ul class="nav navbar-nav">
 					<li class="active" activemenu="home">
 						<a href="#/home">Home</a>
@@ -30,11 +30,14 @@
 					</li>
 				</ul>
 				<ul class="nav navbar-nav pull-right">
-					<li activemenu="signup">
+					<li activemenu="signup" ng-if="!user">
 						<a href="#/signup">Sign Up</a>
 					</li>
-					<li activemenu="login">
+					<li activemenu="login" ng-if="!user">
 						<a href="#/login">Login</a>
+					</li>
+					<li ng-if="!!user">
+						<img class="img-circle" ng-src="{{user.profile_picture}}" alt="" style="display: inline;"> <a href="#/logout" style="display: inline;">Logout</a>
 					</li>
 				</ul>
 			</div>
@@ -42,15 +45,16 @@
 	</div>
 
 	<div class="body">
-		<div class="col-md-2 col-lg-2 ad-container">
+		<div class="col-sm-12 ad-container visible-sm-block visible-xs-block">Top Container</div>
+		<div class="col-sm-2 ad-container hidden-sm hidden-xs">
 			LEFT AD CONTAINER 
 		</div>
 
-		<div class="col-md-8 col-lg-8" ng-view>
+		<div class="col-sm-8" ng-view>
 
 		</div>
 
-		<div class="col-md-2 col-lg-2 ad-container">
+		<div class="col-sm-2 ad-container hidden-sm hidden-xs">
 			RIGHT AD CONTAINER
 		</div>
 	</div>
@@ -63,60 +67,61 @@
 	<!-- facebook sdk start -->
 	<script type="text/javascript">
 		(function(d){
-    		// load the Facebook javascript SDK
+			FB = null;
 
-    		var js,
-    		id = 'facebook-jssdk',
-    		ref = d.getElementsByTagName('script')[0];
+			var js,
+			id = 'facebook-jssdk',
+			ref = d.getElementsByTagName('script')[0];
 
-    		if (d.getElementById(id)) {
-    			return;
-    		}
+			if (d.getElementById(id)) {
+				return;
+			}
 
-    		js = d.createElement('script');
-    		js.id = id;
-    		js.async = true;
-    		js.src = "//connect.facebook.net/en_US/sdk.js";
+			js = d.createElement('script');
+			js.id = id;
+			js.async = true;
+			js.src = "//connect.facebook.net/en_US/sdk.js";
 
-    		ref.parentNode.insertBefore(js, ref);
+			ref.parentNode.insertBefore(js, ref);
 
-    	}(document));
-    </script>
-    <!-- facebook sdk end -->
-
-
-    <!-- 3rd party js start -->
-    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
-    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
-    <script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <!-- 3rd party js end -->
+		}(document));
+	</script>
+	<!-- facebook sdk end -->
 
 
-    <!-- own js start -->
-    <script type="text/javascript" src="assets/js/app.js"></script>
-
-    <!-- directives start -->
-    <script type="text/javascript" src="assets/js/directives/activemenu.js"></script>
-    <!-- directives end -->
-
-
-
-    <!-- services start -->
-    <script type="text/javascript" src="assets/js/services/httpinterceptor.js"></script>
-    <script type="text/javascript" src="assets/js/services/loginservice.js"></script>
-    <script type="text/javascript" src="assets/js/services/facebookservice.js"></script>
-    <!-- services end -->
-
-    <!-- controllers start -->
-    <script type="text/javascript" src="assets/js/controllers/homectrl.js"></script>
-    <script type="text/javascript" src="assets/js/controllers/aboutctrl.js"></script>
-    <script type="text/javascript" src="assets/js/controllers/signupctrl.js"></script>
-    <script type="text/javascript" src="assets/js/controllers/loginctrl.js"></script>
-    <!-- controllers end -->
+	<!-- 3rd party js start -->
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+	<script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.js"></script>
+	<!-- 3rd party js end -->
 
 
-    <!-- own js start -->
+	<!-- own js start -->
+	<script type="text/javascript" src="assets/js/app.js"></script>
+
+	<!-- directives start -->
+	<script type="text/javascript" src="assets/js/directives/activemenu.js"></script>
+	<!-- directives end -->
+
+
+
+	<!-- services start -->
+	<script type="text/javascript" src="assets/js/services/httpinterceptor.js"></script>
+	<script type="text/javascript" src="assets/js/services/loginservice.js"></script>
+	<script type="text/javascript" src="assets/js/services/facebookservice.js"></script>
+	<!-- services end -->
+
+	<!-- controllers start -->
+	<script type="text/javascript" src="assets/js/controllers/homectrl.js"></script>
+	<script type="text/javascript" src="assets/js/controllers/aboutctrl.js"></script>
+	<script type="text/javascript" src="assets/js/controllers/signupctrl.js"></script>
+	<script type="text/javascript" src="assets/js/controllers/loginctrl.js"></script>
+	<script type="text/javascript" src="assets/js/controllers/logoutctrl.js"></script>
+	<!-- controllers end -->
+
+
+	<!-- own js start -->
 </body>
 </html>

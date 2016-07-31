@@ -47,6 +47,14 @@ class User_model extends CI_Model {
 		return $this->db->update('users', $data, $condition);
 	}
 
+	public function check_if_social_user_exists($user_data)
+	{
+		$this->db->where('social_id', $user_data['social_id']);
+		$this->db->where('login_type', 'facebook');
+		$this->db->from('users');
+		return (boolean) $this->db->count_all_results(); 
+	}
+
 }
 
 /* End of file User_model.php */
