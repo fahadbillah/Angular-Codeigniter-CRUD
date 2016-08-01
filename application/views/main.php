@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="NGCI">
+<base href="http://localhost/random/angular-codeigniter/">
 <head>
 	<title>{{pageTitle}} | NG-CI</title>
 
@@ -25,24 +26,27 @@
 	<div class="header">
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#/home">NGCI</a>
+				<a class="navbar-brand" href="home">NGCI</a>
 				<ul class="nav navbar-nav">
 					<li class="active" activemenu="home">
-						<a href="#/home">Home</a>
+						<a href="home">Home</a>
+					</li>
+					<li class="active" activemenu="user_profile">
+						<a href="user/fahadbillah">fahadbillah</a>
 					</li>
 					<li activemenu="about">
-						<a href="#/about">About</a>
+						<a href="about">About</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav pull-right">
 					<li activemenu="signup" ng-if="!user">
-						<a href="#/signup">Sign Up</a>
+						<a href="signup">Sign Up</a>
 					</li>
 					<li activemenu="login" ng-if="!user">
-						<a href="#/login">Login</a>
+						<a href="login">Login</a>
 					</li>
 					<li ng-if="!!user">
-						<img class="img-circle" ng-src="{{user.profile_picture}}" alt="" style="display: inline;"> <a href="#/logout" style="display: inline;">Logout</a>
+						<img class="img-circle" ng-src="{{user.profile_picture}}" alt="" style="display: inline;"> <a href="logout" style="display: inline;">Logout</a>
 					</li>
 				</ul>
 			</div>
@@ -128,6 +132,7 @@
 	<script type="text/javascript" src="assets/js/controllers/signupctrl.js"></script>
 	<script type="text/javascript" src="assets/js/controllers/loginctrl.js"></script>
 	<script type="text/javascript" src="assets/js/controllers/logoutctrl.js"></script>
+	<script type="text/javascript" src="assets/js/controllers/userprofilectrl.js"></script>
 	<!-- controllers end -->
 
 

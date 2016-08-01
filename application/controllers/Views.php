@@ -9,6 +9,7 @@ class Views extends CI_Controller {
 
 	public function index()
 	{
+		echo "wow";
 		$this->load->view('main');
 	}
 
@@ -49,6 +50,11 @@ class Views extends CI_Controller {
 	public function social_login_buttons()
 	{
 		$this->load->view('ng-views/social_login_buttons');
+	}
+
+	public function user_profile()
+	{
+		$this->load->view('ng-views/user_profile');
 	}
 
 }

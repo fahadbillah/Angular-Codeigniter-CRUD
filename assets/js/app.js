@@ -5,7 +5,7 @@
 */
 var NGCI = angular.module('NGCI', ['ngRoute','ngCookies']);
 
-NGCI.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpProvider) {
+NGCI.config(['$routeProvider','$httpProvider','$locationProvider', function ($routeProvider,$httpProvider,$locationProvider) {
 	$httpProvider.interceptors.push('httpInterceptor');
 
 	$routeProvider
@@ -34,7 +34,14 @@ NGCI.config(['$routeProvider','$httpProvider', function ($routeProvider,$httpPro
 		controller: 'LogoutCtrl',
 		routeName: 'logout'
 	})
+	.when('/user/:userName', {
+		templateUrl: 'views/user_profile',
+		controller: 'UserProfileCtrl',
+		routeName: 'user_profile'
+	})
 	.otherwise({ redirectTo: '/home' })
+	$locationProvider.html5Mode(true);
+
 }]);
 
 NGCI.run(['$rootScope','$window','facebookService', function ($rootScope,$window,facebookService) {
