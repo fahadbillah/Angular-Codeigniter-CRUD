@@ -7,7 +7,6 @@
 		<div class="g-signin2" data-onsuccess="startGoogle"></div>
 	</div>
 </div>
-
 <script type="text/javascript">
 	(function(d){
 		FB = null;

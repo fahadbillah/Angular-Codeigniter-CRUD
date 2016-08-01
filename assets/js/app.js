@@ -39,7 +39,13 @@ NGCI.config(['$routeProvider','$httpProvider','$locationProvider', function ($ro
 		controller: 'UserProfileCtrl',
 		routeName: 'user_profile'
 	})
+	.when('/user/:userName/:id', {
+		templateUrl: 'views/user_profile',
+		controller: 'UserProfileCtrl',
+		routeName: 'user_profile'
+	})
 	.otherwise({ redirectTo: '/home' })
+	$locationProvider.hashPrefix('!');
 	$locationProvider.html5Mode(true);
 
 }]);

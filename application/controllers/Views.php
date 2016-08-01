@@ -9,7 +9,6 @@ class Views extends CI_Controller {
 
 	public function index()
 	{
-		echo "wow";
 		$this->load->view('main');
 	}
 
@@ -24,6 +23,9 @@ class Views extends CI_Controller {
 
 	public function home()
 	{
+		_dump(current_url());
+		_dump($_GET);
+		_dump($this->input->get('id'));
 		$this->load->view('ng-views/home');
 	}
 
