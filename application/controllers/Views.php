@@ -9,7 +9,29 @@ class Views extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('main');
+		// _dump($_SERVER);
+		_dump(strpos($this->input->server('QUERY_STRING'),'_escaped_fragment_=') === false);
+		// exit();
+		if (strpos($this->input->server('QUERY_STRING'),'_escaped_fragment_=') === false) {
+			$this->load->view('main');
+		} else {
+			// echo "bot view";
+			$redirect_url = $this->input->server('PATH_INFO');
+			$redirect_url = strpos($redirect_url, '/') === 0 ? substr($redirect_url, 1) : $redirect_url;
+			$redirect_url .= '?_escaped_fragment_=';
+			// _dump(base_url().$redirect_url);
+
+			redirect(base_url().$redirect_url,'refresh');
+		}
+
+
+		// redirect(base_url().'views/test');
+	}
+
+	public function test()
+	{
+		echo "this is test";
+		// $this->load->view('main');
 	}
 
 	public function page_missing()

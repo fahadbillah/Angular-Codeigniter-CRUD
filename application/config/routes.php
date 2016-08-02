@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['(:any)'] = "views/index";
-// $route['(:any)/(:any)'] = "views/index";
+// $route['(escaped_fragment)'] = "views/test";
 $route['(:any)/(:any)/(:any)'] = "views/index";
 $route['user/(:any)'] = "views/index";
 $route['default_controller'] = 'views';
