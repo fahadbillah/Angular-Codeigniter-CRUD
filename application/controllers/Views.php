@@ -10,44 +10,41 @@ class Views extends CI_Controller {
 	public function index()
 	{
 		// _dump($_SERVER);
-		_dump(strpos($this->input->server('QUERY_STRING'),'_escaped_fragment_=') === false);
+		// _dump(strpos($this->input->server('QUERY_STRING'),'_escaped_fragment_=') === false);
 		// exit();
-		if (strpos($this->input->server('QUERY_STRING'),'_escaped_fragment_=') === false) {
+		// _dump($this->input->get('_escaped_fragment_'));
+
+
+		if ($this->input->get('_escaped_fragment_') === null) {
 			$this->load->view('main');
 		} else {
 			// echo "bot view";
-			$redirect_url = $this->input->server('PATH_INFO');
-			$redirect_url = strpos($redirect_url, '/') === 0 ? substr($redirect_url, 1) : $redirect_url;
-			$redirect_url .= '?_escaped_fragment_=';
-			// _dump(base_url().$redirect_url);
+			// $redirect_url = $this->input->server('PATH_INFO');
+			// $redirect_url = strpos($redirect_url, '/') === 0 ? substr($redirect_url, 1) : $redirect_url;
+			// $redirect_url .= '?_escaped_fragment_=';
+			// // _dump(base_url().$redirect_url);
 
-			redirect(base_url().$redirect_url,'refresh');
+			// redirect(base_url().$redirect_url,'refresh');
+			// redirect(base_url().'views/test');
 		}
 
-
-		// redirect(base_url().'views/test');
+		// echo "wow";
 	}
 
 	public function test()
 	{
-		echo "this is test";
+		// _json($_SERVER);
+		// echo "this is test";
 		// $this->load->view('main');
 	}
 
-	public function page_missing()
+	public function error_page()
 	{
-		$data = array(
-			'heading' => 'Page Not Found!!!',
-			'message' => 'Please try a valid url',
-			);
-		$this->load->view('errors/html/error_404',$data);
+		$this->load->view('errors/html/error_page');
 	}
 
 	public function home()
 	{
-		_dump(current_url());
-		_dump($_GET);
-		_dump($this->input->get('id'));
 		$this->load->view('ng-views/home');
 	}
 

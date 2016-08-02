@@ -9,6 +9,7 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+		echo "static view";
 		$data = array('title' => 'Home');
 		$this->load->view('regular-views/header');
 		$this->load->view('regular-views/home', $data);

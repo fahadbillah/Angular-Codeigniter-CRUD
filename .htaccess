@@ -1,16 +1,14 @@
 RewriteEngine On  
-# If an existing asset or directory is requested go to it as it is
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
-RewriteRule ^ - [L]
 
-# If the requested resource doesn't exist, use index.html
-# RewriteRule ^ /index.html
+RewriteCond %{HTTP_USER_AGENT} (googlebot|bingbot|yahoo|baiduspider|facebookexternalhit|twitterbot|rogerbot|linkedinbot|embedly|quora\ link\ preview|showyoubot|outbrain|pinterest|slackbot|vkShare|W3C_Validator) [NC]
+RewriteRule ^(.*)$ snapshot/index.php/$1 [QSA,L]
 
-RewriteEngine On
+
+
+# RewriteRule ^(?!.*?(\.js|\.css|\.xml|\.less|\.png|\.jpg|\.jpeg|\.gif|\.pdf|\.doc|\.txt|\.ico|\.rss|\.zip|\.mp3|\.rar|\.exe|\.wmv|\.doc|\.avi|\.ppt|\.mpg|\.mpeg|\.tif|\.wav|\.mov|\.psd|\.ai|\.xls|\.mp4|\.m4a|\.swf|\.dat|\.dmg|\.iso|\.flv|\.m4v|\.torrent|\.ttf|\.woff))(.*)$ snapshot/ [QSA,L]
+
+
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L]
-
-# RewriteCond %{QUERY_STRING} _escaped_fragment_=([^&]*)
-# RewriteRule ^ snapshot/

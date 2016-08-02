@@ -34,8 +34,9 @@
 					<li activemenu="login" ng-if="!user">
 						<a href="login">Login</a>
 					</li>
-					<li ng-if="!!user">
-						<img class="img-circle" ng-src="{{user.profile_picture}}" alt="" style="display: inline;"> <a href="logout" style="display: inline;">Logout</a>
+					<li>
+						<img class="img-circle" src="" alt="" style="display: inline-block;">
+						<a href="logout" style="display: inline-block;">Logout</a>
 					</li>
 				</ul>
 			</div>
@@ -47,3 +48,5 @@
 		<div class="col-sm-2 ad-container hidden-sm hidden-xs">
 			LEFT AD CONTAINER 
 		</div>
+
+		<div class="col-sm-8" ng-view>

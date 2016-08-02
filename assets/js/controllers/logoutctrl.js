@@ -5,7 +5,7 @@ NGCI.controller('LogoutCtrl', ['$rootScope','$scope','facebookService','$locatio
 
 	$scope.$watch('user',function(newValue,oldValue) {
 		if (newValue === null) {
-			$location.path('/home');
+			$location.path('/');
 		} else {}
 	});
 }]);

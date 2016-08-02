@@ -6,7 +6,7 @@ NGCI.controller('SignupCtrl', ['$rootScope','$scope','facebookService', '$locati
 
 	$scope.$watch('user',function(newValue,oldValue) {
 		if (!!newValue) {
-			$location.path('/home');
+			$location.path('/');
 		} else {}
 	});
 	$scope.socialLoginButton = 'views/social_login_buttons?'+parseInt(Math.random()*100);

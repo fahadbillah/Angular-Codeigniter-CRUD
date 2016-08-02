@@ -49,10 +49,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['(:any)'] = "views/index";
-// $route['(escaped_fragment)'] = "views/test";
-$route['(:any)/(:any)/(:any)'] = "views/index";
-$route['user/(:any)'] = "views/index";
+// $route['products/([a-z]+)/(\d+)'] = '$1/id_$2';
+
+
+// checking if human user or crawler bot. any crawler bot will contain _escaped_fragment_= in the url
+// $human_user = (isset($_GET['_escaped_fragment_'])) ? FALSE : TRUE;
+
+// echo "<pre>";
+// var_dump($_SERVER);
+// exit();
+// echo "wow";
+
+// echo "<pre>";
+// var_dump($_SERVER);
+// if ($human_user) {
 $route['default_controller'] = 'views';
-$route['404_override'] = 'views/page_missing';
+$route['404_override'] = 'views/error_page';
+	// $route['(.*)'] = "views/index";
+$route['(:any)'] = "views/index";
+$route['user/(:any)'] = "views/index";
+$route['error/(:any)'] = "views/index";
+$route['(:any)/(:any)/(:any)'] = "views/index";
+// }else{
+// 	$route['default_controller'] = 'home';
+// }
+//  else {
+// 	$route['(:any)'] = "$1";
+// 	$route['(:any)/(:any)'] = "$1/$2";
+// 	$route['(:any)/(:any)/(:any)'] = "$1/$2/$3";
+// 	// echo "contain escaped_fragment";
+// }
+// exit();
+// $route['(:any)(\?escaped_fragment=)'] = "views/test";
+// $route['(:any)/(:any)'] = "views/index";
+// $route['(:any)'] = "$1";
 // $route['products/([a-z]+)/(\d+)'] = '$1/id_$2';

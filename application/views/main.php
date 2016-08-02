@@ -45,7 +45,7 @@
 						<a href="login">Login</a>
 					</li>
 					<li ng-if="!!user">
-						<img class="img-circle" ng-src="{{user.profile_picture}}" alt="" style="display: inline;"> <a href="logout" style="display: inline;">Logout</a>
+						<img class="img-circle" ng-src="{{user.profile_picture}}" alt="" style="display: inline-block;"> <a href="logout" style="display: inline-block;">Logout</a>
 					</li>
 				</ul>
 			</div>
@@ -100,6 +100,7 @@
 	<!-- services end -->
 
 	<!-- controllers start -->
+	<script type="text/javascript" src="assets/js/controllers/errorctrl.js"></script>
 	<script type="text/javascript" src="assets/js/controllers/homectrl.js"></script>
 	<script type="text/javascript" src="assets/js/controllers/aboutctrl.js"></script>
 	<script type="text/javascript" src="assets/js/controllers/signupctrl.js"></script>

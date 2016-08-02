@@ -9,6 +9,11 @@ NGCI.config(['$routeProvider','$httpProvider','$locationProvider', function ($ro
 	$httpProvider.interceptors.push('httpInterceptor');
 
 	$routeProvider
+	.when('/', {
+		templateUrl: 'views/home',
+		controller: 'HomeCtrl',
+		routeName: 'home'
+	})
 	.when('/home', {
 		templateUrl: 'views/home',
 		controller: 'HomeCtrl',
@@ -34,6 +39,11 @@ NGCI.config(['$routeProvider','$httpProvider','$locationProvider', function ($ro
 		controller: 'LogoutCtrl',
 		routeName: 'logout'
 	})
+	.when('/error/:errorId', {
+		templateUrl: 'views/error_page',
+		controller: 'ErrorCtrl',
+		routeName: 'error'
+	})
 	.when('/user/:userName', {
 		templateUrl: 'views/user_profile',
 		controller: 'UserProfileCtrl',
@@ -44,7 +54,7 @@ NGCI.config(['$routeProvider','$httpProvider','$locationProvider', function ($ro
 		controller: 'UserProfileCtrl',
 		routeName: 'user_profile'
 	})
-	.otherwise({ redirectTo: '/home' })
+	.otherwise({ redirectTo: '/error/404' })
 	$locationProvider.hashPrefix('!');
 	$locationProvider.html5Mode(true);
 

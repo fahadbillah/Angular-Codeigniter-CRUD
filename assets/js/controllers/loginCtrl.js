@@ -3,7 +3,7 @@ NGCI.controller('LoginCtrl', ['$rootScope','$scope','$location','googleService',
 	$scope.title = 'This Is Login View!';
 	$scope.$watch('user',function(newValue,oldValue) {
 		if (!!newValue) {
-			$location.path('/home');
+			$location.path('/');
 		} else {}
 	});
 	$scope.socialLoginButton = 'views/social_login_buttons?'+parseInt(Math.random()*100);
