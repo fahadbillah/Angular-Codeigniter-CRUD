@@ -27,10 +27,10 @@
 			<div class="container-fluid">
 				<a class="navbar-brand" href="home">NGCI</a>
 				<ul class="nav navbar-nav">
-					<li class="active" activemenu="home">
+					<li class="" activemenu="home">
 						<a href="home">Home</a>
 					</li>
-					<li class="active" activemenu="user_profile">
+					<li class="" activemenu="user_profile">
 						<a href="user/fahadbillah">fahadbillah</a>
 					</li>
 					<li activemenu="about">

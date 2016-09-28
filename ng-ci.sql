@@ -5,21 +5,21 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema ng-ci
+-- Schema ngci
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema ng-ci
+-- Schema ngci
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `ng-ci` DEFAULT CHARACTER SET latin1 ;
-USE `ng-ci` ;
+CREATE SCHEMA IF NOT EXISTS `ngci` DEFAULT CHARACTER SET latin1 ;
+USE `ngci` ;
 
 -- -----------------------------------------------------
--- Table `ng-ci`.`ci_sessions`
+-- Table `ngci`.`ci_sessions`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `ng-ci`.`ci_sessions` ;
+DROP TABLE IF EXISTS `ngci`.`ci_sessions` ;
 
-CREATE TABLE IF NOT EXISTS `ng-ci`.`ci_sessions` (
+CREATE TABLE IF NOT EXISTS `ngci`.`ci_sessions` (
   `id` VARCHAR(40) NOT NULL,
   `ip_address` VARCHAR(45) NOT NULL,
   `timestamp` INT(10) UNSIGNED NOT NULL DEFAULT '0',
@@ -30,11 +30,11 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `ng-ci`.`users`
+-- Table `ngci`.`users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `ng-ci`.`users` ;
+DROP TABLE IF EXISTS `ngci`.`users` ;
 
-CREATE TABLE IF NOT EXISTS `ng-ci`.`users` (
+CREATE TABLE IF NOT EXISTS `ngci`.`users` (
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NULL DEFAULT NULL,

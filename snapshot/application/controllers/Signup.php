@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class User extends CI_Controller {
+class Signup extends CI_Controller {
 
 	public function __construct()
 	{
@@ -10,11 +10,11 @@ class User extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('header');
-		$this->load->view('user_profile');
+		$this->load->view('signup');
 		$this->load->view('footer');
 	}
 
 }
 
-/* End of file User.php */
-/* Location: ./application/controllers/User.php */
+/* End of file Signup.php */
+/* Location: ./application/controllers/Signup.php */
